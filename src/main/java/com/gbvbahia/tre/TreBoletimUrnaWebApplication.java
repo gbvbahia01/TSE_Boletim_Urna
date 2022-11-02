@@ -49,7 +49,7 @@ public class TreBoletimUrnaWebApplication implements ApplicationRunner {
     }
 
     sw.stop();
-    log.info("TreBoletimUrnaWebApplication finished: " + sw.toString());
+    log.info("TreBoletimUrnaWebApplication finished: {} seconds", sw.getTotalTimeSeconds());
     System.exit(0);
   }
 
