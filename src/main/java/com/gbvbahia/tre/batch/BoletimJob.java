@@ -1,6 +1,5 @@
 package com.gbvbahia.tre.batch;
 
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ThreadPoolExecutor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
