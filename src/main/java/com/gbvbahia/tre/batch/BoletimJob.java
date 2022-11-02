@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import com.gbvbahia.tre.dto.BoletimUrnaDto;
+import com.gbvbahia.tre.model.BoletimUrna;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,7 +29,8 @@ public class BoletimJob {
   public static final Integer INTEGER_OVERRIDDEN_BY_EXPRESSION = null;
   public static final Long LONG_OVERRIDDEN_BY_EXPRESSION = null;
   public static final String STRING_OVERRIDDEN_BY_EXPRESSION = null;
-
+  private static final Integer HEADER_LINE = 1;
+  
   private final JobBuilderFactory jobsFactory;
   private final StepBuilderFactory stepsFactory;
 
@@ -46,8 +48,9 @@ public class BoletimJob {
       @Value("${app.batch.threads.amount}") Integer amountThreads) {
     return this.stepsFactory
         .get("stepExecuteProcessor")
-        .<BoletimUrnaDto, BoletimUrnaDto>chunk(chunks)
+        .<BoletimUrnaDto, BoletimUrna>chunk(chunks)
         .reader(reader(STRING_OVERRIDDEN_BY_EXPRESSION))
+        .processor(boletimProcessor(STRING_OVERRIDDEN_BY_EXPRESSION))
         .writer(writer())
         .taskExecutor(taskExecutor(INTEGER_OVERRIDDEN_BY_EXPRESSION))
         .throttleLimit(amountThreads)
@@ -81,12 +84,19 @@ public class BoletimJob {
           }
         }).build();
     reader.setEncoding("ISO-8859-1");
+    reader.setLinesToSkip(HEADER_LINE);
     return reader;
   }
 
   @Bean
-  ItemWriter<BoletimUrnaDto> writer() {
-    return (b -> log.info("BoletimUrnaDto: {}", b));
+  @StepScope
+  BoletimUrnaProcessor boletimProcessor(@Value("#{jobParameters['PATH_TO_FILE']}") String pathToFile) {
+    return new BoletimUrnaProcessor(pathToFile);
+  }
+  
+  @Bean
+  ItemWriter<BoletimUrna> writer() {
+    return (b -> log.info("BoletimUrna: {}", b));
   }
   
 
