@@ -1,5 +1,6 @@
 package com.gbvbahia.tre.batch;
 
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ThreadPoolExecutor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -61,7 +62,7 @@ public class BoletimJob {
     
     log.info("File to read: {}", pathToFile);
     
-    return new FlatFileItemReaderBuilder<BoletimUrnaDto>().name("BoletimUrnaItemReader")
+    FlatFileItemReader<BoletimUrnaDto> reader = new FlatFileItemReaderBuilder<BoletimUrnaDto>().name("BoletimUrnaItemReader")
         .resource(new FileSystemResource(pathToFile))// sample-data.csv
         .delimited().delimiter(";")
         .names(new String[] {"DT_GERACAO", "HH_GERACAO", "ANO_ELEICAO", "CD_TIPO_ELEICAO",
@@ -80,6 +81,8 @@ public class BoletimJob {
             setTargetType(BoletimUrnaDto.class);
           }
         }).build();
+    reader.setEncoding("ISO-8859-1");
+    return reader;
   }
 
   @Bean
