@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gbvbahia</groupId>
-	<artifactId>TRE_Boletim_Urna_Web</artifactId>
+	<artifactId>TSE_Boletim_Urna_Web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>TRE_Boletim_Urna_Web</name>
+	<name>TSE_Boletim_Urna_Web</name>
 	<description>Downloader</description>
 	<properties>
 		<java.version>11</java.version>
