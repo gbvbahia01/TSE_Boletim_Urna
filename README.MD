@@ -5,4 +5,6 @@
 https://dadosabertos.tse.jus.br/dataset/resultados-2022-boletim-de-urna
 
 To run:
-VM Argument example: --pathToFile=/Eclipse/TSE/bweb_2t_ZZ_311020221535/bweb_2t_ZZ_311020221535.csv
+mvn spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=dev --pathToFile=/<PATH>/bweb_2t_AC_311020221535.csv"
+
+mvn spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=dev --pathToFile=/Users/guilhermebahia/Developer/Eclipse/TRE/bweb_2t_AC_311020221535/bweb_2t_AC_311020221535.csv"
