@@ -47,8 +47,6 @@ CREATE TABLE boletim_urna (
 	file_name varchar(250) NULL,
 	CONSTRAINT boletim_urna_pkey PRIMARY KEY (id)
 );
-CREATE INDEX "nr_partido_idx" ON boletim_urna USING btree (nr_partido);
-
 
 CREATE SEQUENCE seq_boletim_urna
 	INCREMENT BY 1
