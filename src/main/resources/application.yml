@@ -13,8 +13,8 @@ logging:
 app:
   batch:
     threads:
-      chunks: 5 
-      amount: 10 
+      chunks: 20 
+      amount: 20 
 
 spring:
   batch:

@@ -18,6 +18,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import com.gbvbahia.tre.dto.BoletimUrnaDto;
 import com.gbvbahia.tre.model.BoletimUrna;
+import com.gbvbahia.tre.repository.BoletimUrnaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,6 +31,7 @@ public class BoletimJob {
   public static final Long LONG_OVERRIDDEN_BY_EXPRESSION = null;
   public static final String STRING_OVERRIDDEN_BY_EXPRESSION = null;
   private static final Integer HEADER_LINE = 1;
+  private static final BoletimUrnaRepository BUR_OVERRIDDEN_BY_EXPRESSION = null;
   
   private final JobBuilderFactory jobsFactory;
   private final StepBuilderFactory stepsFactory;
@@ -51,7 +53,7 @@ public class BoletimJob {
         .<BoletimUrnaDto, BoletimUrna>chunk(chunks)
         .reader(reader(STRING_OVERRIDDEN_BY_EXPRESSION))
         .processor(boletimProcessor(STRING_OVERRIDDEN_BY_EXPRESSION))
-        .writer(writer())
+        .writer(writer(BUR_OVERRIDDEN_BY_EXPRESSION))
         .taskExecutor(taskExecutor(INTEGER_OVERRIDDEN_BY_EXPRESSION))
         .throttleLimit(amountThreads)
         .build();
@@ -95,8 +97,8 @@ public class BoletimJob {
   }
   
   @Bean
-  ItemWriter<BoletimUrna> writer() {
-    return (b -> log.info("BoletimUrna: {}", b));
+  ItemWriter<BoletimUrna> writer(BoletimUrnaRepository boletimUrnaRepository) {
+    return (b -> boletimUrnaRepository.saveAll(b));
   }
   
 

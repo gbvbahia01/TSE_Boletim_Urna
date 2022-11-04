@@ -53,6 +53,7 @@ public class TreBoletimUrnaWebApplication implements ApplicationRunner {
       for (File csv : listCsvFiles) {
         log.info("To process: {}", csv.getAbsolutePath());
         startBatchService.processStarter(csv.getAbsolutePath());
+        IOHelper.zipAndMoveFileToFolder(csv.getAbsolutePath(), "DONE");
       }
       
     } catch (Exception e) {
