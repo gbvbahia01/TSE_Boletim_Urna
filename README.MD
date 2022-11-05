@@ -10,6 +10,22 @@ Se for utilizar outro banco de dados revise as bibliotecas do mesmo no pom.xml e
 Os arquivos que geram as tabelas do banco de dados necessários para execução podem ser encontrados no caminho: src/main/resources/db/migration.      
 Caso você utilize outro banco de dados que não seja o Postgre deverá atualizar esses arquivo com a sintaxe do banco de sua preferencia.       
 
+##### application.yml    
+Se quiser aumentar a quantidade de threads deverá também aumentar a quantidade de conexões com o banco de dados, para não ter erros de falta de conexão ao salvar as linhas:
+
+```
+app:
+  batch:
+    threads:
+      chunks: 1000
+      amount: 30 #<- Quantidade máxima de Threads executando.
+      
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 30 #<- Quantidade máxima de conexões com o banco de dados.
+```
+
 ##### application-dev.yml   
 Atualizar as propriedades referente ao banco de dados que será utilizado.   
 
