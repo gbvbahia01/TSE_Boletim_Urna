@@ -18,7 +18,7 @@ CREATE TABLE boletim_urna (
 	cd_cargo_pergunta int4 NOT NULL,
 	ds_cargo_pergunta varchar(100) NULL,
 	nr_partido int4 NULL,
-	sg_partido varchar(10) NULL,
+	sg_partido varchar(100) NULL,
 	nm_partido varchar(250) NULL,
 	dt_bu_recebido timestamp NULL,
 	qt_aptos int4 NULL,

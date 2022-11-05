@@ -45,4 +45,5 @@ CREATE INDEX "nr_partido_idx" ON boletim_urna USING btree (nr_partido);
 
 ### SQL   
 select * from public.boletim_urna bu where cd_eleicao = 545 order by nm_municipio, nr_zona, nr_secao ; --Somente votos para presidente      
-select * from public.boletim_urna bu where cd_eleicao = 547 order by nm_municipio, nr_zona, nr_secao ; --Somente gorvenadores   
+select * from public.boletim_urna bu where cd_eleicao = 547 order by nm_municipio, nr_zona, nr_secao ; --Somente gorvenadores
+
