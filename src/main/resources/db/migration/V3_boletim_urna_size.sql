@@ -1,0 +1,1 @@
+ALTER TABLE public.boletim_urna ALTER COLUMN sg_partido TYPE varchar(100) USING sg_partido::varchar;
