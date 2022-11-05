@@ -2,19 +2,19 @@ info:
   app:
     name: Spring Batch TRE BR Boletim Urna
     version: 1.0.0
-    
+
 logging:
   level:
     root: WARN
     '[org.springframework.web]': WARN
-    '[com.gbvbahia]': DEBUG    
-    
-   
+    '[com.gbvbahia]': DEBUG
+
+
 app:
   batch:
     threads:
-      chunks: 1000 
-      amount: 20 
+      chunks: 1000
+      amount: 30
 
 spring:
   batch:
@@ -28,7 +28,7 @@ spring:
   datasource:
     hikari:
       connectionTimeout: 20000
-      maximumPoolSize: 20
+      maximumPoolSize: 30
     driver-class-name: org.postgresql.Driver
     url: #By profile
     username: #By profile
@@ -44,4 +44,4 @@ spring:
     properties:
       hibernate:
         temp:
-          '[use_jdbc_metadata_defaults]': false  
+          '[use_jdbc_metadata_defaults]': false
