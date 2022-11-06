@@ -41,7 +41,9 @@ Exemplo:
 
 
 ### Index para depois da importação   
-CREATE INDEX "nr_partido_idx" ON boletim_urna USING btree (nr_partido);   
+CREATE INDEX "query_tse_1_idx" ON boletim_urna USING btree (sg_uf);
+CREATE INDEX "query_tse_2_idx" ON boletim_urna USING btree (sg_uf, nm_votavel);
+CREATE INDEX "query_tse_3_idx" ON boletim_urna USING btree (sg_uf, nr_secao, nr_zona);
 
 ### SQL   
 select * from public.boletim_urna bu where cd_eleicao = 545 order by nm_municipio, nr_zona, nr_secao ; --Somente votos para presidente      

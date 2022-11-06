@@ -98,7 +98,7 @@ public class BoletimJob {
   
   @Bean
   ItemWriter<BoletimUrna> writer(BoletimUrnaRepository boletimUrnaRepository) {
-    return (b -> boletimUrnaRepository.saveAll(b));
+    return new BoletimUrnaWriter(boletimUrnaRepository);
   }
   
 
