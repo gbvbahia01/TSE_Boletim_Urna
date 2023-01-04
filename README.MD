@@ -34,10 +34,10 @@ Atualizar as propriedades referente ao banco de dados que será utilizado.
 Após baixar os arquivos, copiar todos na mesma pasta e executar o comando passando como argumento pathToFiles o caminho até os arquivos.   
 
 Executar:   
-> mvn spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=dev --pathToFiles=/<PATH>"   
+> mvn spring-boot:run "-Dspring-boot.run.arguments=--spring.profiles.active=dev --pathToFiles=/<PATH>"   
 
 Exemplo:
-> mvn spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=dev --pathToFiles=/Users/guilhermebahia/Developer/Eclipse/TRE/allfiles"   
+> mvn spring-boot:run "-Dspring-boot.run.arguments=--spring.profiles.active=dev --pathToFiles=/Users/guilhermebahia/Developer/Eclipse/TRE/allfiles"   
 
 
 ### Index para depois da importação   
